@@ -14,12 +14,15 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
 const indexRouter = require('./routes/index');
-const noteRouter = require('./routes/note')
+const noteRouter = require('./routes/note');
 
 app.use('/', indexRouter);
 app.use('/note', noteRouter);
 
 app.listen(port, () => {
-  console.log(`running on port ${port}`)
+  console.log(`running on port ${port}`);
 });

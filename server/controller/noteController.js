@@ -14,3 +14,13 @@ exports.addNote = async (req, res) => {
     res.status(500).send
   }
 }
+
+exports.getAllNotes = async (req, res) => {
+  try {
+    const allNotes = await Note.find({})
+    res.status(200).json(allNotes)
+  } catch (error) {
+    console.error(err)
+    res.status(500).send
+  }
+}
