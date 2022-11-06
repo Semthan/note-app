@@ -14,10 +14,11 @@ connection.once('open', () => {
   console.log('MongoDB database connection established successfully');
 });
 
+const indexRouter = require('./routes/index');
+const noteRouter = require('./routes/note')
 
-app.get('/', (req, res) => {
-  res.send('hello world')
-});
+app.use('/', indexRouter);
+app.use('/note', noteRouter);
 
 app.listen(port, () => {
   console.log(`running on port ${port}`)
