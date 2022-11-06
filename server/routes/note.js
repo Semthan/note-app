@@ -7,4 +7,7 @@ router
   .get('/', noteController.getAllNotes)
   .post('/add', noteController.addNote)
 
+router
+  .get('/:id', noteController.getOneNote);
+
 module.exports = router;
