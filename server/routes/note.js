@@ -10,5 +10,6 @@ router
 router
   .get('/:id', noteController.getOneNote)
   .post('/:id', noteController.editNote)
+  .delete('/:id', noteController.deleteOneNote)
 
 module.exports = router;

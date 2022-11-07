@@ -54,3 +54,14 @@ exports.editNote = async (req, res) => {
     res.status(500).send()
   }
 }
+
+exports.deleteOneNote = async (req, res) => {
+  try {
+    const noteID = req.params.id;
+    await Note.findByIdAndDelete(noteID);
+    res.status(200).json('deleted');
+  } catch (error) {
+    console.error(error)
+    res.status(500).send()
+  }
+}
