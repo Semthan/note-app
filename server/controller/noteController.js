@@ -36,3 +36,21 @@ exports.addNote = async (req, res) => {
     res.status(500).send
   }
 }
+
+exports.editNote = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const note = {
+      title: req.body.title,
+      content: req.body.content
+    }
+    const filter = { _id: id };
+
+    await Note.findByIdAndUpdate(filter, note, { new: true });
+    res.status(200).json('updated')
+  } catch (error) {
+    console.error(error)
+    res.status(500).send()
+  }
+}

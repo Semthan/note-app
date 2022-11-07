@@ -8,6 +8,7 @@ router
   .post('/add', noteController.addNote)
 
 router
-  .get('/:id', noteController.getOneNote);
+  .get('/:id', noteController.getOneNote)
+  .post('/:id', noteController.editNote)
 
 module.exports = router;
