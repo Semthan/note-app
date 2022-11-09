@@ -61,8 +61,13 @@ exports.loginUser = async (req, res) => {
 }
 
 exports.getMe = async (req, res) => {
+  const { _id, name, email } = await User.findById(req.user.id);
   try {
-    res.status(200).json('me')
+    res.status(200).json({
+      id: _id,
+      name: name,
+      email: email,
+    })
   } catch (error) {
     console.error(error)
     res.status(500).send
