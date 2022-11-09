@@ -19,9 +19,11 @@ app.use(express.urlencoded({ extended: false }));
 
 const indexRouter = require('./routes/index');
 const noteRouter = require('./routes/note');
+const userRouter = require('./routes/user');
 
 app.use('/', indexRouter);
 app.use('/note', noteRouter);
+app.use('/user', userRouter);
 
 app.listen(port, () => {
   console.log(`running on port ${port}`);

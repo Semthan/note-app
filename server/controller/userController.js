@@ -1,5 +1,4 @@
 const User = require('../models/userModel');
-const router = require('../routes/user');
 
 exports.registerUser = async (req, res) => {
   try {
@@ -27,5 +26,3 @@ exports.getMe = async (req, res) => {
     res.status(500).send
   }
 }
-
-module.exports = router;
