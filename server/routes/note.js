@@ -5,11 +5,11 @@ const noteController = require('../controller/noteController');
 
 router
   .get('/', noteController.getAllNotes)
-  .post('/add', noteController.addNote)
+  .post('/', noteController.addNote)
 
 router
   .get('/:id', noteController.getOneNote)
-  .post('/:id', noteController.editNote)
+  .put('/:id', noteController.editNote)
   .delete('/:id', noteController.deleteOneNote)
 
 module.exports = router;

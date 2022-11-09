@@ -5,7 +5,7 @@ exports.getAllNotes = async (req, res) => {
     const allNotes = await Note.find({})
     res.status(200).json(allNotes)
   } catch (error) {
-    console.error(err)
+    console.error(error)
     res.status(500).send
   }
 }
@@ -16,20 +16,17 @@ exports.getOneNote = async (req, res) => {
     const note = await Note.findById(noteID);
     res.status(200).json(note);
   } catch (error) {
-    console.error(err)
+    console.error(error)
     res.status(500).send
   }
-
 }
 
 exports.addNote = async (req, res) => {
   try {
-    const newNote = {
+    const note = await Note.create({
       title: req.body.title,
       content: req.body.content
-    }
-    const note = await new Note(newNote);
-    note.save();
+    })
     res.status(200).json(note)
   } catch (error) {
     console.error(error)
@@ -39,16 +36,8 @@ exports.addNote = async (req, res) => {
 
 exports.editNote = async (req, res) => {
   try {
-    const { id } = req.params;
-
-    const note = {
-      title: req.body.title,
-      content: req.body.content
-    }
-    const filter = { _id: id };
-
-    await Note.findByIdAndUpdate(filter, note, { new: true });
-    res.status(200).json('updated')
+    const updatedNote = await Note.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.status(200).json(updatedNote)
   } catch (error) {
     console.error(error)
     res.status(500).send()
@@ -58,8 +47,8 @@ exports.editNote = async (req, res) => {
 exports.deleteOneNote = async (req, res) => {
   try {
     const noteID = req.params.id;
-    await Note.findByIdAndDelete(noteID);
-    res.status(200).json('deleted');
+    const deletedNote = await Note.findByIdAndDelete(noteID);
+    res.status(200).json(deletedNote);
   } catch (error) {
     console.error(error)
     res.status(500).send()
