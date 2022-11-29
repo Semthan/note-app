@@ -20,13 +20,12 @@ function Dashboard() {
 
     if(!user){
       navigate('/login')
+    }else{
+      dispatch(getNotes())
     }
-
-    dispatch(getNotes())
-
-    return () => {
+/*     return () => {
       dispatch(reset())
-    }
+    } */
   }, [user, navigate, isError,message, dispatch])
 
   if(isLoading) {
