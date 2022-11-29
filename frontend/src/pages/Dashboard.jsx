@@ -3,6 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import { useSelector, useDispatch} from 'react-redux'
 import NoteForm from '../components/NoteForm'
 import Spinner from '../components/Spinner'
+import NoteItem from '../components/NoteItem'
 import {getNotes, reset} from '../features/notes/noteSlice'
 
 function Dashboard() {
@@ -38,6 +39,18 @@ function Dashboard() {
         <h1>Welcome {user && user.name}</h1>
         <p>Notes Dashboard</p>
         <NoteForm/>
+      </section>
+
+      <section className="content">
+        {notes.length > 0 ? (
+          <div>
+            {notes.map((note) => (
+              <NoteItem key={note._id} note={note}/>       
+            ))}
+          </div>
+        ): (
+          <h3>You have not any notes</h3>
+        )}
       </section>
     </>
   )
