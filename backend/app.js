@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+import path from 'path'
 
 require('dotenv').config();
 
@@ -24,6 +25,12 @@ const userRouter = require('./routes/user');
 app.use('/', indexRouter);
 app.use('/note', noteRouter);
 app.use('/user', userRouter);
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, '/frontend/build')));
+app.get('*', (req, res) =>
+  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
+);
 
 app.listen(port, () => {
   console.log(`running on port ${port}`);
