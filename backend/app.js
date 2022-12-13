@@ -18,11 +18,11 @@ connection.once('open', () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-const indexRouter = require('./routes/index');
+/* const indexRouter = require('./routes/index'); */
 const noteRouter = require('./routes/note');
 const userRouter = require('./routes/user');
 
-app.use('/', indexRouter);
+/* app.use('/', indexRouter); */
 app.use('/note', noteRouter);
 app.use('/user', userRouter);
 
