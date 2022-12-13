@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-import path from 'path'
+const path = require('path');
 
 require('dotenv').config();
 
