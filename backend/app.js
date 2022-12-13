@@ -26,12 +26,17 @@ app.use('/', indexRouter);
 app.use('/note', noteRouter);
 app.use('/user', userRouter);
 
-const dirname = path.resolve();
-app.use(express.static(path.join(dirname, '/frontend/build')));
-app.get('*', (req, res) =>
-  res.sendFile(path.join(dirname, '/frontend/build/index.html'))
-);
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
 
+  app.get('*', (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, '../', 'frontend', 'build', 'index.html')
+    )
+  );
+} else {
+  app.get('/', (req, res) => res.send('Please set to production'));
+}
 app.listen(port, () => {
   console.log(`running on port ${port}`);
 });
