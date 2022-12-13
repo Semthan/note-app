@@ -18,18 +18,18 @@ connection.once('open', () => {
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-/* const indexRouter = require('./routes/index'); */
+const indexRouter = require('./routes/index');
 const noteRouter = require('./routes/note');
 const userRouter = require('./routes/user');
 
-/* app.use('/', indexRouter); */
+app.use('/', indexRouter);
 app.use('/note', noteRouter);
 app.use('/user', userRouter);
 
 
 app.use(express.static(path.join(__dirname, '/frontend/build')));
 app.get('*', (req, res) =>
-  res.sendFile(path.resolve(__dirname, '/frontend/build/index.html'))
+  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
 );
 
 app.listen(port, () => {
