@@ -26,10 +26,10 @@ app.use('/', indexRouter);
 app.use('/note', noteRouter);
 app.use('/user', userRouter);
 
-
-app.use(express.static(path.join(__dirname, '/frontend/build')));
+const dirname = path.resolve();
+app.use(express.static(path.join(dirname, '/frontend/build')));
 app.get('*', (req, res) =>
-  res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
+  res.sendFile(path.join(dirname, '/frontend/build/index.html'))
 );
 
 app.listen(port, () => {
