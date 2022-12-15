@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
+const cors = require('cors');
 
 require('dotenv').config();
 
@@ -40,7 +41,7 @@ if (process.env.NODE_ENV === 'production') {
 
 app.use(
   cors({
-    origin: ['https://note-app-m6ge.onrender.com', 'http://localhost:3000', 'http://localhost:3001'],
+    origin: ['https://note-app-frontend.onrender.com', 'http://localhost:3000', 'http://localhost:3001'],
     credentials: true,
   }),
 );
