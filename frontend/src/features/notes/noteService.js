@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = '/note/'
+const API_URL = 'https://note-app-m6ge.onrender.com/note/'
 
 //create new note
 const createNote = async (noteData, token) => {

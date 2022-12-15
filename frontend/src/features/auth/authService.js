@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = '/user/'
+const API_URL = 'https://note-app-m6ge.onrender.com/user/'
 
 //Register user
 const register = async (userData) => {

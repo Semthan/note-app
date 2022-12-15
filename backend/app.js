@@ -37,6 +37,14 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   app.get('/', (req, res) => res.send('Please set to production'));
 }
+
+app.use(
+  cors({
+    origin: ['https://note-app-m6ge.onrender.com', 'http://localhost:3000', 'http://localhost:3001'],
+    credentials: true,
+  }),
+);
+
 app.listen(port, () => {
   console.log(`running on port ${port}`);
 });
